@@ -1,0 +1,27 @@
+{
+    "name": "dietervds/laravel4-ironcache",
+    "description": "Iron.io cache service provider for Laravel 4",
+    "keywords": [
+        "cache",
+        "iron.io",
+        "ironcache",
+        "laravel"
+    ],
+    "homepage": "https://github.com/dietervds/laravel4-ironcache",
+    "license": "MIT",
+    "authors": [{
+        "name": "Dieter Van der Stock",
+        "email": "dietervds@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=5.3",
+        "iron-io/iron_cache": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "dietervds\\IronCache": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
