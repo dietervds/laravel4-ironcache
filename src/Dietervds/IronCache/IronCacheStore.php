@@ -10,8 +10,6 @@ class IroncacheStore implements StoreInterface {
 
     public function __construct()
     {
-        echo "<br/>Initting Ironcache connection";
-
         $token = Config::get('laravel4-ironcache::token');
         $projectId = Config::get('laravel4-ironcache::project_id');
         $cacheName = Config::get('laravel4-ironcache::cache_name');
@@ -21,8 +19,6 @@ class IroncacheStore implements StoreInterface {
             'project_id'    =>  $projectId
         ));
         $this->ironcache->setCacheName($cacheName);
-
-        echo '<br/>Connected';
     }
 
     /**
