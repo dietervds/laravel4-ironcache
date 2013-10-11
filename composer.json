@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-0": {
-            "dietervds\\IronCache": "src/"
+            "Dietervds\\IronCache": "src/"
         }
     },
     "minimum-stability": "dev"
