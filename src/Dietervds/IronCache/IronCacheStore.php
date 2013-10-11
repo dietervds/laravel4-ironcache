@@ -42,31 +42,36 @@ class IroncacheStore implements StoreInterface {
      */
     public function put($key, $value, $minutes)
     {
-        $this->ironcache->put($key, $value);
+        $valueArray = array(
+            'value'         =>  $value,
+            'expires_in'    =>  $minutes * 60,
+        );
+
+        $this->ironcache->put($key, $valueArray);
     }
 
     /**
      * Increment the value of an item in the cache.
      *
      * @param  string  $key
-     * @param  mixed   $value
+     * @param  mixed   $amount
      * @return void
      */
-    public function increment($key, $value = 1)
+    public function increment($key, $amount = 1)
     {
-
+        $this->ironcache->increment($key, $amount);
     }
 
     /**
-     * Decrement the value of an item in the cache.
+     * Decrement the amount of an item in the cache.
      *
      * @param  string  $key
-     * @param  mixed   $value
+     * @param  mixed   $amount
      * @return void
      */
-    public function decrement($key, $value = 1)
+    public function decrement($key, $amount = 1)
     {
-
+        $this->ironcache->increment($key, -$amount);
     }
 
     /**
