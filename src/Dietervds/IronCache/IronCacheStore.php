@@ -29,7 +29,12 @@ class IroncacheStore implements StoreInterface {
      */
     public function get($key)
     {
-        return $this->ironcache->get($key)->value;
+        $valueObject = $this->ironcache->get($key);
+        if($valueObject) {
+            return $valueObject->value;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -42,6 +47,9 @@ class IroncacheStore implements StoreInterface {
      */
     public function put($key, $value, $minutes)
     {
+        // Ironcache's SDK allows you to do this by making the value an array with extra options.
+        // More options can be found here: http://dev.iron.io/cache/reference/api/
+        // Note: expiration can be no more then 30 days (2592000 seconds), but I don't check for this limit yet. I probably should.
         $valueArray = array(
             'value'         =>  $value,
             'expires_in'    =>  $minutes * 60,
@@ -83,7 +91,8 @@ class IroncacheStore implements StoreInterface {
      */
     public function forever($key, $value)
     {
-
+        // Not specifying an expiration time will keep it forever
+        $this->ironcache->put($key, $value);
     }
 
     /**
@@ -94,7 +103,7 @@ class IroncacheStore implements StoreInterface {
      */
     public function forget($key)
     {
-
+        $this->ironcache->delete($key);
     }
 
     /**
@@ -104,7 +113,7 @@ class IroncacheStore implements StoreInterface {
      */
     public function flush()
     {
-
+        $this->ironcache->clear();
     }
 
     /**
