@@ -16,15 +16,16 @@ class IronCacheServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->package('dietervds/laravel4-ironcache');
-
-        $this->app['cache']->extend('ironcache', function($app)
-        {
-            return new Repository(new IroncacheStore($this->app['config']['cache.prefix']));
-        });
     }
 
     public function register()
     {
-
+        $this->app['cache']->extend('ironcache', function($app)
+        {
+            $prefix = $this->app['config']->get('cache.prefix');
+            $config = $this->app['config']->get('laravel4-ironcache::config');
+            
+            return new Repository(new IroncacheStore($prefix, $config));
+        });
     }
 }

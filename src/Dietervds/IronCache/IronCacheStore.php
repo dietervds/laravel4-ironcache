@@ -2,7 +2,6 @@
 
 use Illuminate\Cache\StoreInterface;
 use \IronCache;
-use \Config;
 
 class IroncacheStore implements StoreInterface {
 
@@ -10,17 +9,13 @@ class IroncacheStore implements StoreInterface {
 
     private $prefix;
 
-    public function __construct($prefix = '')
+    public function __construct($prefix = '', array $config)
     {
-        $token = Config::get('laravel4-ironcache::token');
-        $projectId = Config::get('laravel4-ironcache::project_id');
-        $cacheName = Config::get('laravel4-ironcache::cache_name');
-
         $this->ironcache = new IronCache(array(
-            'token'         =>  $token,
-            'project_id'    =>  $projectId
+            'token'         =>  $config['token'],
+            'project_id'    =>  $config['project_id']
         ));
-        $this->ironcache->setCacheName($cacheName);
+        $this->ironcache->setCacheName($config['cache_name']);
         $this->prefix = $prefix;
     }
 
