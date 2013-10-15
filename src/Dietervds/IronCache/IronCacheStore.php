@@ -8,7 +8,9 @@ class IroncacheStore implements StoreInterface {
 
     private $ironcache;
 
-    public function __construct()
+    private $prefix;
+
+    public function __construct($prefix = '')
     {
         $token = Config::get('laravel4-ironcache::token');
         $projectId = Config::get('laravel4-ironcache::project_id');
@@ -19,6 +21,7 @@ class IroncacheStore implements StoreInterface {
             'project_id'    =>  $projectId
         ));
         $this->ironcache->setCacheName($cacheName);
+        $this->prefix = $prefix;
     }
 
     /**
@@ -123,6 +126,6 @@ class IroncacheStore implements StoreInterface {
      */
     public function getPrefix()
     {
-
+        return $this->prefix;
     }
 }

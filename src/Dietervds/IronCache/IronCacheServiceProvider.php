@@ -19,7 +19,7 @@ class IronCacheServiceProvider extends ServiceProvider {
 
         $this->app['cache']->extend('ironcache', function($app)
         {
-            return new Repository(new IroncacheStore);
+            return new Repository(new IroncacheStore($this->app['config']['cache.prefix']));
         });
     }
 
