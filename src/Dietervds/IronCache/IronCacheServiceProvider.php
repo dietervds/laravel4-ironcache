@@ -19,8 +19,8 @@ class IronCacheServiceProvider extends ServiceProvider {
 
         $this->app['cache']->extend('ironcache', function($app)
         {
-            $prefix = $this->app['config']->get('cache.prefix');
-            $config = $this->app['config']->get('laravel4-ironcache::config');
+            $prefix = $app['config']->get('cache.prefix');
+            $config = $app['config']->get('laravel4-ironcache::config');
             
             return new Repository(new IroncacheStore($prefix, $config));
         });
