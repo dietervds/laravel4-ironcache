@@ -27,7 +27,7 @@ Add the service provider in `app/config/app.php`:
 
 Publish the package-specific configuration file:
 
-    php artisan publish:config dietervds/laravel4-ironcache
+    php artisan config:publish dietervds/laravel4-ironcache
 
 This will create a configuration file in `app/config/packages/dietervds/laravel4-ironcache/config.php`.  
 Open it and give it the neccesary Iron.io credentials and cache name.
