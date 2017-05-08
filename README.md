@@ -1,4 +1,4 @@
-laravel-ironcache
+laravel-ironcache (No longer actively supported)
 =================
 
 Implements IronCache (http://www.iron.io/cache) as a Laravel 4 cache driver.
